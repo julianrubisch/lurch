@@ -1,0 +1,6 @@
+<%= link_to conversation, class: "list-group-item list-group-item-action", id: dom_id(conversation) do %>
+  <div>
+    <div class="fw-bold fs-5"><%= conversation.title %></div>
+    <div class="text-truncate fs-6"><%= conversation.summary %></div>
+  </div>
+<% end %>

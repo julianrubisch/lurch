@@ -1,9 +1,9 @@
 class ConversationsController < ApplicationController
+  before_action :set_conversations, only: %i[ index show ]
   before_action :set_conversation, only: %i[ show edit update destroy ]
 
   # GET /conversations or /conversations.json
   def index
-    @conversations = Conversation.all
   end
 
   # GET /conversations/1 or /conversations/1.json
@@ -61,6 +61,10 @@ class ConversationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_conversation
       @conversation = Conversation.find(params[:id])
+    end
+
+    def set_conversations
+      @conversations = Conversation.all
     end
 
     # Only allow a list of trusted parameters through.
