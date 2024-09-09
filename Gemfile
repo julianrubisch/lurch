@@ -59,3 +59,7 @@ group :test do
 end
 
 gem "open_router", "~> 0.3.3"
+
+gem "dotenv", "~> 3.1"
+
+gem "dotenv-rails", "~> 3.1"
