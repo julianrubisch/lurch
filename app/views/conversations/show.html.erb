@@ -1,8 +1,14 @@
 <%= render @conversation %>
 
-<!-- <div> -->
-  <%# link_to "Edit this conversation", edit_conversation_path(@conversation) %>
-  <%#= link_to "Back to conversations", conversations_path %>
-
-  <%#= button_to "Destroy this conversation", @conversation, method: :delete %>
-<!-- </div> -->
+<div class="position-fixed bottom-0 mb-2 w-75">
+  <%= form_with model: [@conversation, Message.new] do |form| %>
+    <div class="row">
+      <div class="col-10">
+        <%= form.text_field :body, class: "form-control", autocomplete: "off" %>
+      </div>
+      <div class="col">
+        <%= form.submit "Send", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

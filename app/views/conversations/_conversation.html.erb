@@ -1,1 +1,3 @@
-<%= render @conversation.messages %>
+<div id="<%= dom_id(@conversation, :messages) %>">
+  <%= render @conversation.messages %>
+</div>
