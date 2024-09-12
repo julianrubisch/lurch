@@ -4,10 +4,12 @@ class ConversationsController < ApplicationController
 
   # GET /conversations or /conversations.json
   def index
+    @new_conversation = Conversation.new
   end
 
   # GET /conversations/1 or /conversations/1.json
   def show
+    @new_conversation = Conversation.new
   end
 
   # GET /conversations/new

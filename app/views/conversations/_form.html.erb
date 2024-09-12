@@ -1,27 +1,28 @@
-<%= form_with(model: conversation) do |form| %>
-  <% if conversation.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
+<%= turbo_frame_tag :new_conversation_dialog do %>
+  <%= form_with model: conversation do |form| %>
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="newConversationModalLabel">Create a new conversation</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <% if conversation.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(conversation.errors.count, "error") %> prohibited this conversation from being saved:</h2>
 
-      <ul>
-        <% conversation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+          <ul>
+            <% conversation.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: "form-control", autocomplete: "off" %>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      <%= form.submit "Save", class: "btn btn-primary" %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :summary, style: "display: block" %>
-    <%= form.text_area :summary %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

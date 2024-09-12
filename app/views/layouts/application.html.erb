@@ -23,7 +23,19 @@
     <div class="row">
       <div class="col-3">
         <div class="d-grid">
-          <%= link_to "New conversation", new_conversation_path, class: "btn btn-outline-primary mb-4" %>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-primary mb-4" data-bs-toggle="modal" data-bs-target="#newConversationModal">
+            New conversation
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="newConversationModal" tabindex="-1" aria-labelledby="newConversationModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <%= render "form", conversation: @new_conversation %>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="list-group">
