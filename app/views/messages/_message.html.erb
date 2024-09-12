@@ -1,17 +1,3 @@
 <div id="<%= dom_id message %>">
-  <p>
-    <strong>Body:</strong>
-    <%= message.body %>
-  </p>
-
-  <p>
-    <strong>Conversation:</strong>
-    <%= message.conversation_id %>
-  </p>
-
-  <p>
-    <strong>Messagable:</strong>
-    <%= message.messagable_id %>
-  </p>
-
+  <%= render "messages/messagable/#{message.messagable_name}", message: message %>
 </div>
