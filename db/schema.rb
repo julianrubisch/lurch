@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_09_113238) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text "body"
     t.integer "conversation_id", null: false
     t.string "messagable_type", null: false
     t.integer "messagable_id", null: false
@@ -31,12 +30,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_09_113238) do
 
   create_table "prompts", force: :cascade do |t|
     t.string "model"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "replies", force: :cascade do |t|
     t.integer "rating"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
