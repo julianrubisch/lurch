@@ -1,1 +1,2 @@
 <%= turbo_stream.append [@conversation, :messages], @message %>
+<%= turbo_stream.update "message-form-wrapper", partial: "messages/form", locals: {conversation: @conversation} %>
