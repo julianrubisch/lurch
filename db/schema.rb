@@ -36,10 +36,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_09_113238) do
   end
 
   create_table "replies", force: :cascade do |t|
-    t.integer "rating"
     t.text "body"
+    t.integer "prompt_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["prompt_id"], name: "index_replies_on_prompt_id"
   end
 
   add_foreign_key "messages", "conversations"

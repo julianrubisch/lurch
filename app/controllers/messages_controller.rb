@@ -26,6 +26,9 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        Message.create(conversation: @conversation,
+                       messagable: Reply.new(body: "thinking...",
+                                              prompt: @message.prompt))
         format.turbo_stream
       else
         # TODO handle the validation failure case
