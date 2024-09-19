@@ -29,6 +29,8 @@ class MessagesController < ApplicationController
         Message.create(conversation: @conversation,
                        messagable: Reply.new(body: "thinking...",
                                               prompt: @message.prompt))
+        GenerateReplyJob.perform_later(prompt: @message.prompt)
+
         format.turbo_stream
       else
         # TODO handle the validation failure case

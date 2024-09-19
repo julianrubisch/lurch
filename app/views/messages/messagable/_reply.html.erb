@@ -1,10 +1,10 @@
 <% message ||= reply.message %>
 
-<div class="row mb-4">
+<div class="row mb-4" id="<%= dom_id(message.messagable) %>">
   <div class="col-8">
-    <div class="card text-bg-light rounded-pill">
+    <div class="card text-bg-light">
       <div class="card-body" id="<%= dom_id(message.messagable, :body) %>">
-        <%= message.messagable.body %>
+        <%= simple_format message.messagable.body %>
       </div> 
   </div>
   <div class="col-4"></div>
