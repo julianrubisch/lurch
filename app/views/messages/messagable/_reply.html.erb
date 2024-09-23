@@ -1,6 +1,6 @@
 <% message ||= reply.message %>
 
-<div class="row mb-4" id="<%= dom_id(message.messagable) %>">
+<div class="row mb-4" id="<%= dom_id(message.messagable) %>" style="view-transition-name: reply;">
   <div class="col-8">
     <div class="card text-bg-light">
       <div class="card-body" id="<%= dom_id(message.messagable, :body) %>">

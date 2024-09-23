@@ -1,2 +1,66 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+@keyframes fade-out-to-left {
+  0% {
+    opacity: 1;
+    transform: translateZ(0)
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-4rem, 0, 0)
+  }
+}
+
+@keyframes fade-in-from-left {
+  0% {
+    opacity: 0;
+    transform: translate3d(-4rem, 0, 0)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateZ(0)
+  }
+}
+
+@keyframes fade-out-to-right {
+  0% {
+    opacity: 1;
+    transform: translateZ(0)
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(4rem, 0, 0)
+  }
+}
+
+@keyframes fade-in-from-right {
+  0% {
+    opacity: 0;
+    transform: translate3d(4rem, 0, 0)
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateZ(0)
+  }
+}
+
+html[data-turbo-visit-direction="forward"]::view-transition-old(prompt) {
+  animation: fade-out-to-right 1s ease-out forwards;
+}
+
+html[data-turbo-visit-direction="forward"]::view-transition-new(prompt) {
+  animation: fade-in-from-right 1s ease-out forwards;
+}
+
+html[data-turbo-visit-direction="forward"]::view-transition-old(reply) {
+  animation: fade-out-to-left 1s ease-out forwards;
+}
+
+html[data-turbo-visit-direction="forward"]::view-transition-new(reply) {
+  animation: fade-in-from-left 1s ease-out forwards;
+}
