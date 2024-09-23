@@ -22,13 +22,13 @@ class MessagesController < ApplicationController
 
   # POST /messages or /messages.json
   def create
-    @message = Message.new(conversation: @conversation, messagable: Prompt.new(body: message_params[:body]))
+    @message = Message.new(conversation: @conversation, messagable: Prompt.new(body: message_params[:body], model: message_params[:model]))
 
     respond_to do |format|
       if @message.save
         Message.create(conversation: @conversation,
                        messagable: Reply.new(body: "thinking...",
-                                              prompt: @message.prompt))
+                                             prompt: @message.prompt))
         GenerateReplyJob.perform_later(prompt: @message.prompt)
 
         format.turbo_stream
@@ -75,6 +75,6 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.require(:message).permit(:body, :conversation_id, :messagable_id, :messagable_type)
+      params.require(:message).permit(:body, :conversation_id, :messagable_id, :messagable_type, :model)
     end
 end

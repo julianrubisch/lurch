@@ -6,7 +6,8 @@ class GenerateReplyJob < ApplicationJob
 
     response = client.complete([
       {role: "user", content: prompt.body}
-    ])
+    ],
+    model: [prompt.model])
 
     prompt.reply.update!(
       body: response["choices"].first.dig("message", "content"),
@@ -15,5 +16,7 @@ class GenerateReplyJob < ApplicationJob
 
     Turbo::StreamsChannel.broadcast_update_to prompt.message.conversation, target: "message-form-wrapper", content: ApplicationController.render(partial: "messages/form", locals: {conversation: prompt.message.conversation})
     # Turbo::StreamsChannel.broadcast_refresh_to prompt.message.conversation
+
+    SummarizeJob.perform_later(conversation: prompt.message.conversation)
   end
 end
