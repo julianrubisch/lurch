@@ -1,1 +1,3 @@
-<%= turbo_frame_tag message, src: conversation_message_path(message.conversation, message), loading: :lazy %>
+<%= turbo_frame_tag message, src: conversation_message_path(message.conversation, message), loading: :lazy do %>
+  <%= render "messages/messagable/#{message.messagable_name}", message: Message.new(messagable: message.messagable.class.new(body: "Loading...")) %>
+<% end %>

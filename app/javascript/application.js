@@ -17,3 +17,11 @@ document.addEventListener("turbo:load", () => {
     });
   });
 });
+
+document.addEventListener("turbo:before-cache", (event) => {
+  document
+    .querySelectorAll("turbo-frame[loading=lazy] .card-body")
+    .forEach((body) => {
+      body.innerHTML = "Loading...";
+    });
+});
